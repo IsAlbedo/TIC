@@ -1,1125 +1,879 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Describiendo las Competencias en el Uso de las TIC | UAGro</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                            900: '#134e4a',
-                            dark: '#0b132b'
-                        },
-                        tech: {
-                            dark: '#0f172a',
-                            card: '#1e293b',
-                            accent: '#38bdf8'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Google Fonts & FontAwesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Describiendo las competencias en el uso de las TIC | UAGro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1f2937;
+            --bg-card-hover: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-blue: #38bdf8;
+            --accent-emerald: #34d399;
+            --accent-purple: #c084fc;
+            --accent-amber: #fbbf24;
+            --border-color: #1f2937;
+            --border-highlight: #374151;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #090d16;
-            color: #cbd5e1;
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
+        /* Header Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 23, 0.85);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .glass-panel-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-panel-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(45, 212, 191, 0.4);
-            box-shadow: 0 12px 30px -10px rgba(13, 148, 136, 0.25);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 100%);
+        .logo i {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .badge-uagro {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-family: var(--font-mono);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+        }
+
+        .hero-container {
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-highlight);
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            color: var(--accent-emerald);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .gradient-border {
-            position: relative;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: #0284c7;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-highlight);
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card-hover);
+        }
+
+        /* Container & Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Profile Card Grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 0.75rem;
-            background: linear-gradient(135deg, rgba(45, 212, 191, 0.2), rgba(56, 189, 248, 0.2));
-            padding: 1px;
+            padding: 2rem;
+            transition: all 0.3s ease;
         }
 
-        .grid-bg {
-            background-image: radial-gradient(rgba(45, 212, 191, 0.12) 1px, transparent 0);
-            background-size: 32px 32px;
+        .card:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-4px);
         }
 
-        /* Presentation Mode Fullscreen Modal */
-        #presentationModal {
-            transition: opacity 0.3s ease-in-out;
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+
+        /* Theoretical Framework: Concept vs Competence */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0d9488;
+
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        .comp-card {
+            background: var(--bg-secondary);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border-left: 4rem solid;
+        }
+
+        .comp-card.left {
+            border-color: #ef4444;
+        }
+
+        .comp-card.right {
+            border-color: var(--accent-emerald);
+        }
+
+        .comp-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comp-list {
+            list-style: none;
+        }
+
+        .comp-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .comp-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Dimension Triad */
+        .triad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .triad-grid { grid-template-columns: 1fr; }
+        }
+
+        .triad-box {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .triad-box h4 {
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        /* Value Chain Diagram */
+        .chain-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+            overflow-x: auto;
+        }
+
+        .chain-step {
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .chain-step .step-num {
+            font-family: var(--font-mono);
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .chain-step h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .chain-arrow {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+        }
+
+        /* Competencies Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent-blue);
+            background: rgba(31, 41, 55, 0.5);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-header i {
+            color: var(--accent-amber);
+            font-size: 1.25rem;
+        }
+
+        .skill-header h4 {
+            font-size: 1rem;
+        }
+
+        /* Application Contexts */
+        .context-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            border-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* AI Section Special Styling */
+        .ai-section {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(192, 132, 252, 0.05) 50%, var(--bg-primary) 100%);
+        }
+
+        .ai-card {
+            border: 1px solid rgba(192, 132, 252, 0.2);
+            background: rgba(17, 24, 39, 0.8);
+        }
+
+        /* Citations & References */
+        .reference-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .reference-item {
+            background: var(--bg-secondary);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--accent-blue);
+            font-size: 0.9rem;
+        }
+
+        .reference-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .reference-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
-<body class="grid-bg min-h-screen text-slate-300 antialiased selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- Sticky Navigation -->
-    <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 glass-panel">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#inicio" class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-brand-600/20 border border-brand-500/40 flex items-center justify-center text-brand-500 font-bold">
-                    <i class="fa-solid fa-code"></i>
-                </div>
-                <div>
-                    <span class="font-bold text-white tracking-wide block leading-none text-sm sm:text-base">Competencias<span class="text-brand-500">TIC</span></span>
-                    <span class="text-[10px] text-slate-400 font-mono">UAGro • Maestría en TIC</span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-6 text-xs font-medium uppercase tracking-wider text-slate-300">
-                <a href="#perfil" class="hover:text-brand-500 transition-colors">Perfil</a>
-                <a href="#concepto" class="hover:text-brand-500 transition-colors">Concepto</a>
-                <a href="#competencias" class="hover:text-brand-500 transition-colors">Competencias</a>
-                <a href="#contextos" class="hover:text-brand-500 transition-colors">Contextos</a>
-                <a href="#ia" class="hover:text-brand-500 transition-colors">IA</a>
-                <a href="#beneficios" class="hover:text-brand-500 transition-colors">Retos</a>
-                <a href="#fuentes" class="hover:text-brand-500 transition-colors">Fuentes</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <button onclick="startPresentation()" class="bg-brand-600 hover:bg-brand-500 text-slate-900 font-semibold px-4 py-2 rounded-lg text-xs tracking-wider uppercase transition-all shadow-lg shadow-brand-600/20 flex items-center gap-2">
-                    <i class="fa-solid fa-play text-xs"></i>
-                    <span class="hidden sm:inline">Modo Exposición</span>
-                </button>
-                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Nav Menu -->
-        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-800 bg-slate-900/95 px-4 py-4 space-y-3 text-sm">
-            <a href="#perfil" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Perfil Profesional</a>
-            <a href="#concepto" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">¿Qué son las Competencias TIC?</a>
-            <a href="#competencias" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Mis Competencias Clave</a>
-            <a href="#contextos" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Formación, Laboral y Personal</a>
-            <a href="#ia" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Inteligencia Artificial</a>
-            <a href="#beneficios" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Beneficios y Áreas de Mejora</a>
-            <a href="#fuentes" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-500">Fuentes Científicas</a>
-        </div>
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-code-branch"></i>
+            <span>TIC.Competencias</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#perfil">Perfil</a></li>
+            <li><a href="#concepto">Marco Teórico</a></li>
+            <li><a href="#competencias">Competencias</a></li>
+            <li><a href="#aplicacion">Aplicación</a></li>
+            <li><a href="#ia">Inteligencia Artificial</a></li>
+            <li><a href="#balance">Beneficios & Retos</a></li>
+            <li><a href="#fuentes">Fuentes</a></li>
+        </ul>
+        <span class="badge-uagro">UAGro | Maestría TIC</span>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
-
-        <!-- 1. PORTADA / INICIO -->
-        <section id="inicio" class="pt-6 pb-12">
-            <div class="glass-panel rounded-2xl p-8 sm:p-12 relative overflow-hidden border border-brand-500/20">
-                <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="max-w-3xl space-y-6 relative z-10">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono font-medium">
-                        <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-                        Actividad Académica de Maestría • UAGro
-                    </div>
-
-                    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                        Describiendo las Competencias en el Uso de las <span class="gradient-text">TIC</span>
-                    </h1>
-
-                    <p class="text-base sm:text-xl text-slate-300 leading-relaxed font-light">
-                        Tema: <span class="text-white font-medium">“El uso de las TIC para mi formación profesional aplicada en mi contexto laboral y personal”</span>
-                    </p>
-
-                    <!-- Presenter Info Badge -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-800 text-sm">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-brand-400 font-bold border border-slate-700">
-                                <i class="fa-solid fa-user-gear"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-slate-400 uppercase tracking-wider">Presentador</div>
-                                <div class="text-white font-semibold">Ingeniero en Sistemas Computacionales</div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-sky-400 font-bold border border-slate-700">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-slate-400 uppercase tracking-wider">Programa Educativo</div>
-                                <div class="text-white font-semibold">Estudiante de Maestría en TIC (UAGro)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#perfil" class="bg-brand-600 hover:bg-brand-500 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all shadow-lg shadow-brand-600/30 flex items-center gap-2">
-                            <span>Explorar Contenido</span>
-                            <i class="fa-solid fa-arrow-down text-sm"></i>
-                        </a>
-                        <button onclick="startPresentation()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium px-6 py-3 rounded-xl transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-desktop text-brand-400"></i>
-                            <span>Iniciar Exposición Oral</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Interactive Workflow Diagram (Cadena de Valor) -->
-                <div class="mt-12 pt-8 border-t border-slate-800/80">
-                    <h3 class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-6 text-center">
-                        <i class="fa-solid fa-diagram-project text-brand-500 mr-2"></i>Cadena Integradora de Valor Digital
-                    </h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                        <div class="glass-panel p-4 rounded-xl border border-slate-800 hover:border-brand-500/40 transition-colors">
-                            <span class="text-[10px] font-mono text-brand-400 uppercase tracking-widest block mb-1">Nivel 1</span>
-                            <h4 class="text-sm font-bold text-white mb-1"><i class="fa-solid fa-microchip text-brand-500 mr-1.5"></i>Mis Competencias</h4>
-                            <p class="text-xs text-slate-400">Software, BD, Automatización, IA</p>
-                        </div>
-
-                        <div class="glass-panel p-4 rounded-xl border border-slate-800 hover:border-brand-500/40 transition-colors">
-                            <span class="text-[10px] font-mono text-brand-400 uppercase tracking-widest block mb-1">Nivel 2</span>
-                            <h4 class="text-sm font-bold text-white mb-1"><i class="fa-solid fa-graduation-cap text-sky-400 mr-1.5"></i>Formación</h4>
-                            <p class="text-xs text-slate-400">Investigación, Posgrado UAGro</p>
-                        </div>
-
-                        <div class="glass-panel p-4 rounded-xl border border-slate-800 hover:border-brand-500/40 transition-colors">
-                            <span class="text-[10px] font-mono text-brand-400 uppercase tracking-widest block mb-1">Nivel 3</span>
-                            <h4 class="text-sm font-bold text-white mb-1"><i class="fa-solid fa-briefcase text-emerald-400 mr-1.5"></i>Laboral / Personal</h4>
-                            <p class="text-xs text-slate-400">Optimización, Seguridad, Criterio</p>
-                        </div>
-
-                        <div class="glass-panel p-4 rounded-xl border border-slate-800 hover:border-brand-500/40 transition-colors">
-                            <span class="text-[10px] font-mono text-brand-400 uppercase tracking-widest block mb-1">Impacto</span>
-                            <h4 class="text-sm font-bold text-white mb-1"><i class="fa-solid fa-bullseye text-amber-400 mr-1.5"></i>Aplicación TIC</h4>
-                            <p class="text-xs text-slate-400">Solución Estratégica de Problemas</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- 1. Portada / Inicio -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="pill-tag">
+                <i class="fa-solid fa-graduation-cap"></i> Actividad Académica - Exposición
             </div>
-        </section>
-
-        <!-- 2. MI PERFIL PROFESIONAL -->
-        <section id="perfil" class="scroll-mt-20">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg">
-                    <i class="fa-solid fa-user-astronaut"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Mi Perfil Profesional</h2>
-                    <p class="text-xs text-slate-400 font-mono">Ingeniería en Sistemas Computacionales + Posgrado UAGro</p>
-                </div>
+            <h1>Describiendo las competencias en el uso de las TIC</h1>
+            <div class="hero-subtitle">
+                “El uso de las TIC para mi formación profesional aplicada en mi contexto laboral y/o personal”
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Academic Profile Card -->
-                <div class="glass-panel glass-panel-hover p-6 rounded-xl border-l-4 border-l-brand-500 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-mono text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded">Base Técnica</span>
-                        <i class="fa-solid fa-laptop-code text-slate-500 text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Ingeniería en Sistemas Computacionales</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Formación universitaria enfocada en la fundamentación lógica, arquitectura de hardware/software, redes y principios de computación.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 pt-2 border-t border-slate-800">
-                        <li><i class="fa-solid fa-check text-brand-400 mr-2"></i>Lógica de programación estructurada y OO</li>
-                        <li><i class="fa-solid fa-check text-brand-400 mr-2"></i>Estructuras de datos y algoritmos</li>
-                        <li><i class="fa-solid fa-check text-brand-400 mr-2"></i>Modelado de bases de datos de información</li>
-                    </ul>
-                </div>
-
-                <!-- Master's Degree Card -->
-                <div class="glass-panel glass-panel-hover p-6 rounded-xl border-l-4 border-l-sky-500 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-mono text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded">Posgrado Activo</span>
-                        <i class="fa-solid fa-graduation-cap text-slate-500 text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Maestría en TIC (UAGro)</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Estudio avanzado orientado a la investigación aplicada, innovación tecnológica, gestión estratégica de datos y soluciones de alta complejidad.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 pt-2 border-t border-slate-800">
-                        <li><i class="fa-solid fa-check text-sky-400 mr-2"></i>Investigación académica y metodología</li>
-                        <li><i class="fa-solid fa-check text-sky-400 mr-2"></i>Evaluación y adopción de emergentes (IA)</li>
-                        <li><i class="fa-solid fa-check text-sky-400 mr-2"></i>Gestión tecnológica y transformación digital</li>
-                    </ul>
-                </div>
-
-                <!-- Technical Ecosystem Grid -->
-                <div class="glass-panel p-6 rounded-xl border border-slate-800 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-layer-group text-brand-400"></i>
-                            Ecosistema Tecnológico Principal
-                        </h3>
-                        <p class="text-xs text-slate-400 mb-4">
-                            Dominio práctico e integración de herramientas especializadas para desarrollo y análisis.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-code text-brand-400 mr-1.5"></i>Programación</span>
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-cube text-sky-400 mr-1.5"></i>Software Dev</span>
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-database text-amber-400 mr-1.5"></i>Bases de Datos</span>
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-robot text-purple-400 mr-1.5"></i>Inteligencia Artificial</span>
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-gears text-emerald-400 mr-1.5"></i>Automatización</span>
-                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"><i class="fa-solid fa-mobile-screen text-pink-400 mr-1.5"></i>Aplicaciones</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 italic">
-                        "Un enfoque analítico donde la tecnología es un medio estratégico para transformar necesidades complejas en sistemas funcionales."
-                    </div>
-                </div>
+            <p>
+                Un análisis estructurado e integral sobre cómo las competencias digitales transversales y especializadas potencian el perfil de un Ingeniero en Sistemas Computacionales y estudiante de Maestría en TIC.
+            </p>
+            <div class="btn-group">
+                <a href="#perfil" class="btn btn-primary"><i class="fa-solid fa-arrow-down"></i> Explorar Exposición</a>
+                <a href="#fuentes" class="btn btn-outline"><i class="fa-solid fa-book-bookmark"></i> Ver Fuentes Académicas</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 3. ¿QUÉ SON LAS COMPETENCIAS TIC? -->
-        <section id="concepto" class="scroll-mt-20">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-lg">
-                    <i class="fa-solid fa-brain"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white">¿Qué son las Competencias TIC?</h2>
-                    <p class="text-xs text-slate-400 font-mono">Marco Teórico & Triada de Aprendizaje</p>
-                </div>
+    <!-- 2. Mi Perfil Profesional -->
+    <section id="perfil" class="section">
+        <div class="section-header">
+            <h2>01. Perfil Profesional y Académico</h2>
+            <p>Formación técnica especializada orientada al ciclo de vida tecnológico y la gestión de innovación.</p>
+        </div>
+        <div class="profile-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>Ingeniería en Sistemas Computacionales</h3>
+                <p>Egresado con bases sólidas en arquitectura de software, bases de datos, redes, programación estructurada y orientada a objetos, e infraestructura tecnológica.</p>
             </div>
-
-            <!-- Conceptual Definition & Triad -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div class="glass-panel p-6 rounded-xl border border-slate-800 lg:col-span-1 flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-mono text-brand-400 uppercase tracking-widest block mb-2">Fundamentación Academic</span>
-                        <h3 class="text-xl font-bold text-white mb-3">Definición Integral</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                            Una competencia digital no es la memorización de comandos, sino la capacidad movilizadora de recursos cognitivos, técnicos y éticos para resolver problemas reales mediante la tecnología.
-                        </p>
-                    </div>
-                    <div class="p-3 rounded-lg bg-brand-500/10 border border-brand-500/20 text-xs text-brand-300">
-                        <i class="fa-solid fa-quote-left mr-1.5 opacity-60"></i> Base teórica alineada con el marco <strong>DigComp 2.2</strong> de la Unión Europea y la <strong>UNESCO</strong>.
-                    </div>
-                </div>
-
-                <!-- The 3 Dimensions (Saber, Saber Hacer, Saber Ser) -->
-                <div class="glass-panel p-6 rounded-xl border border-slate-800 lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="p-4 rounded-lg bg-slate-900/80 border border-slate-800">
-                        <div class="w-8 h-8 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold mb-3">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Saber (Conocimiento)</h4>
-                        <p class="text-xs text-slate-400">Comprensión de lógica, conceptos de IA, modelos de datos, arquitecturas de software y seguridad digital.</p>
-                    </div>
-
-                    <div class="p-4 rounded-lg bg-slate-900/80 border border-slate-800">
-                        <div class="w-8 h-8 rounded bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold mb-3">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Saber Hacer (Habilidad)</h4>
-                        <p class="text-xs text-slate-400">Escritura de código limpio, diseño de esquemas SQL/NoSQL, automatización de scripts y resolución técnica.</p>
-                    </div>
-
-                    <div class="p-4 rounded-lg bg-slate-900/80 border border-slate-800">
-                        <div class="w-8 h-8 rounded bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-3">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-1">Saber Ser/Estar (Criterio)</h4>
-                        <p class="text-xs text-slate-400">Criterio ético en IA, protección de privacidad, responsabilidad tecnológica y actualización autónoma.</p>
-                    </div>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>Estudiante de Maestría en TIC (UAGro)</h3>
+                <p>Enfocado en la gestión avanzada de tecnologías de información, integración de inteligencia artificial, análisis estratégico y optimización de procesos académicos y organizacionales.</p>
             </div>
-
-            <!-- Comparison Interactive Card: Operational vs Competence -->
-            <div class="glass-panel p-6 rounded-xl border border-slate-800">
-                <h3 class="text-base font-bold text-white mb-4 text-center">
-                    <i class="fa-solid fa-scale-unbalanced-flip text-brand-400 mr-2"></i>
-                    Diferencia Clave: Uso Operacional vs. Competencia Digital Integral
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-5 rounded-xl bg-slate-900/90 border border-red-500/20 relative">
-                        <div class="flex items-center gap-2 text-red-400 font-bold text-sm mb-2">
-                            <i class="fa-solid fa-xmark-circle"></i>
-                            Manejo Instrumental / Operacional
-                        </div>
-                        <ul class="text-xs text-slate-400 space-y-2 leading-relaxed">
-                            <li>• Conocer únicamente la sintaxis técnica de un lenguaje o software.</li>
-                            <li>• Ejecutar comandos o scripts sin cuestionar la eficiencia o seguridad.</li>
-                            <li>• Dependencia estricta de manuales sin capacidad de abstracción.</li>
-                            <li class="pt-2 text-slate-300 font-mono">Ejemplo: "Saber escribir una consulta SQL básica en la terminal."</li>
-                        </ul>
-                    </div>
-
-                    <div class="p-5 rounded-xl bg-slate-900/90 border border-emerald-500/20 relative">
-                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm mb-2">
-                            <i class="fa-solid fa-check-circle"></i>
-                            Competencia Digital Superior (Sistemas)
-                        </div>
-                        <ul class="text-xs text-slate-400 space-y-2 leading-relaxed">
-                            <li>• Diagnosticar el problema, diseñar la estructura de datos ideal y optimizar índices.</li>
-                            <li>• Evaluar el impacto en tiempo de respuesta, seguridad y escalabilidad del sistema.</li>
-                            <li>• Integrar éticamente automatización e IA para acelerar el desarrollo.</li>
-                            <li class="pt-2 text-emerald-300 font-mono">Ejemplo: "Diseñar un pipeline completo de datos optimizado para un entorno real."</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+                <h3>Especialización Técnica</h3>
+                <p>Experiencia integrada en desarrollo de software, automatización de procesos, gestión de bases de datos, adopción de herramientas digitales e IA generativa.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 4. MIS COMPETENCIAS TIC -->
-        <section id="competencias" class="scroll-mt-20">
-            <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg">
-                        <i class="fa-solid fa-cubes"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-white">Mis Competencias TIC Clave</h2>
-                        <p class="text-xs text-slate-400 font-mono">Especialidades del Perfil de Sistemas</p>
-                    </div>
-                </div>
-
-                <!-- Skill Filter Buttons -->
-                <div class="hidden sm:flex gap-1.5 p-1 rounded-lg bg-slate-900 border border-slate-800 text-xs">
-                    <button onclick="filterSkills('all')" class="skill-filter-btn px-3 py-1 rounded bg-brand-600 text-slate-900 font-semibold transition-all">Todas</button>
-                    <button onclick="filterSkills('dev')" class="skill-filter-btn px-3 py-1 rounded hover:bg-slate-800 text-slate-300 transition-all">Software & BD</button>
-                    <button onclick="filterSkills('ai')" class="skill-filter-btn px-3 py-1 rounded hover:bg-slate-800 text-slate-300 transition-all">IA & Auto</button>
-                    <button onclick="filterSkills('meta')" class="skill-filter-btn px-3 py-1 rounded hover:bg-slate-800 text-slate-300 transition-all">Gestión & Aprendizaje</button>
-                </div>
-            </div>
-
-            <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Skill 1: Programación -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="dev">
-                    <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Programación Struct/OO</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Lógica algorítmica, código limpio, manejo de patrones de diseño y desarrollo modular de software.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Lógica</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Estructuras</span>
-                    </div>
-                </div>
-
-                <!-- Skill 2: Software Dev -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="dev">
-                    <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Desarrollo de Software y Apps</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Construcción y mantenimiento de aplicaciones web/móviles orientadas a resolver necesidades funcionales del usuario.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Frontend/Backend</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">APIs</span>
-                    </div>
-                </div>
-
-                <!-- Skill 3: Bases de Datos -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="dev">
-                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-database"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Gestión y Modelado de BD</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Diseño relacional/no-relacional, normalización, optimización de consultas y seguridad de la información.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">SQL / NoSQL</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Integridad</span>
-                    </div>
-                </div>
-
-                <!-- Skill 4: Inteligencia Artificial -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="ai">
-                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Inteligencia Artificial</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Uso de modelos de lenguaje, asistencia en codificación, análisis de datos y prompt engineering avanzado.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">LLMs</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Prompting</span>
-                    </div>
-                </div>
-
-                <!-- Skill 5: Automatización -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="ai">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Automatización de Procesos</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Desarrollo de scripts y flujos automatizados para reducir tareas repetitivas y minimizar errores humanos.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Scripts</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Pipelines</span>
-                    </div>
-                </div>
-
-                <!-- Skill 6: Gestión de Información -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="meta">
-                    <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-filter"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Gestión y Curación de Información</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Búsqueda avanzada en repositorios científicos, validación de fuentes y organización estructurada.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Paper Mining</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Criterio</span>
-                    </div>
-                </div>
-
-                <!-- Skill 7: Aprendizaje Digital -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="meta">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Aprendizaje Autónomo Digital</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Autoformación mediante documentación oficial, repositorios open-source y cursos especializados.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Autodidacta</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Docs</span>
-                    </div>
-                </div>
-
-                <!-- Skill 8: Resolución de Problemas -->
-                <div class="skill-card glass-panel glass-panel-hover p-5 rounded-xl border border-slate-800" data-cat="meta">
-                    <div class="w-10 h-10 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold text-lg mb-4">
-                        <i class="fa-solid fa-wrench"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Resolución Tecnológica</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Diagnóstico sistemático de fallas en software/sistemas, depuración de errores y mantenimiento correctivo.
-                    </p>
-                    <div class="flex flex-wrap gap-1 text-[10px] font-mono text-slate-300">
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Debugging</span>
-                        <span class="px-2 py-0.5 rounded bg-slate-800">Diagnóstico</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5, 6, 7. APLICACIÓN EN CONTEXTOS -->
-        <section id="contextos" class="scroll-mt-20">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg">
-                    <i class="fa-solid fa-arrows-split-up-and-left"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Aplicación en los Tres Contextos</h2>
-                    <p class="text-xs text-slate-400 font-mono">Formación Profesional • Contexto Laboral • Contexto Personal</p>
-                </div>
-            </div>
-
-            <!-- Tab Buttons for Contexts -->
-            <div class="flex border-b border-slate-800 mb-6 gap-4">
-                <button onclick="switchContext('academic')" id="tab-academic" class="context-tab text-sm font-bold pb-3 border-b-2 border-brand-500 text-brand-400 flex items-center gap-2">
-                    <i class="fa-solid fa-graduation-cap"></i> Formación Profesional
-                </button>
-                <button onclick="switchContext('laboral')" id="tab-laboral" class="context-tab text-sm font-bold pb-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
-                    <i class="fa-solid fa-briefcase"></i> Contexto Laboral
-                </button>
-                <button onclick="switchContext('personal')" id="tab-personal" class="context-tab text-sm font-bold pb-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
-                    <i class="fa-solid fa-user"></i> Contexto Personal
-                </button>
-            </div>
-
-            <!-- Context 1: Academic / Formación Profesional -->
-            <div id="content-academic" class="context-content space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-brand-400 font-mono text-xs"><i class="fa-solid fa-magnifying-glass mr-1.5"></i>Investigación Científica</div>
-                        <h4 class="text-base font-bold text-white">Búsqueda & Gestores Bibliográficos</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Acceso a repositorios académicos (IEEE, Scopus, Google Scholar) y uso de Zotero/Mendeley para sistematizar el marco teórico del posgrado en UAGro.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-sky-400 font-mono text-xs"><i class="fa-solid fa-chalkboard-user mr-1.5"></i>Plataformas LMS</div>
-                        <h4 class="text-base font-bold text-white">Entornos de Aprendizaje UAGro</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Colaboración, entrega de proyectos y seguimiento académico mediante aulas virtuales y plataformas colaborativas especializadas.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-purple-400 font-mono text-xs"><i class="fa-solid fa-brain mr-1.5"></i>IA en el Posgrado</div>
-                        <h4 class="text-base font-bold text-white">Asistencia para Investigación</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Sintetizar literatura técnica compleja, depurar código experimental para proyectos de investigación y generar borradores analíticos.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Context 2: Laboral -->
-            <div id="content-laboral" class="context-content hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-emerald-400 font-mono text-xs"><i class="fa-solid fa-gears mr-1.5"></i>Automatización Operativa</div>
-                        <h4 class="text-base font-bold text-white">Optimización de Procesos</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Creación de scripts para tareas repetitivas, reduciendo tiempos de procesamiento informático y previniendo errores operacionales.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-amber-400 font-mono text-xs"><i class="fa-solid fa-database mr-1.5"></i>Gestión de Datos</div>
-                        <h4 class="text-base font-bold text-white">Administración de Información</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Diseño y mantenimiento de bases de datos confiables, garantizando disponibilidad, integridad y rendimiento del sistema informático.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-teal-400 font-mono text-xs"><i class="fa-solid fa-shield-halved mr-1.5"></i>Seguridad & Solución</div>
-                        <h4 class="text-base font-bold text-white">Diagnóstico y Resolución</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Solución de fallas en software, atención de inconsistencias de datos y aplicación de respaldos y seguridad de información.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Context 3: Personal -->
-            <div id="content-personal" class="context-content hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-pink-400 font-mono text-xs"><i class="fa-solid fa-calendar-check mr-1.5"></i>Organización Personal</div>
-                        <h4 class="text-base font-bold text-white">Productividad Digital</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Gestión del tiempo, agendas sincronizadas en la nube y organización estructurada de metas e información personal.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-indigo-400 font-mono text-xs"><i class="fa-solid fa-lock mr-1.5"></i>Ciberseguridad Personal</div>
-                        <h4 class="text-base font-bold text-white">Higiene Digital y Privacidad</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Uso de autenticación en dos factores (2FA), gestores de contraseñas y navegación segura para proteger activos digitales.
-                        </p>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                        <div class="text-purple-400 font-mono text-xs"><i class="fa-solid fa-lightbulb mr-1.5"></i>Proyectos & Aprendizaje</div>
-                        <h4 class="text-base font-bold text-white">Autoaprendizaje continuo</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Exploración autodidacta de librerías, repositorios de código abierto e Inteligencia Artificial como tutor personalizado.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. INTELIGENCIA ARTIFICIAL -->
-        <section id="ia" class="scroll-mt-20">
-            <div class="glass-panel p-8 sm:p-10 rounded-2xl border border-purple-500/30 relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xl border border-purple-500/40">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-white">Inteligencia Artificial como Competencia Digital</h2>
-                        <p class="text-xs text-purple-300 font-mono">El Asistente Transversal en Sistemas Computacionales</p>
-                    </div>
-                </div>
-
-                <p class="text-sm text-slate-300 leading-relaxed mb-8 max-w-3xl">
-                    Para un Ingeniero en Sistemas Computacionales y estudiante de posgrado, la IA no es un reemplazo de la lógica humana, sino un <strong>acelerador de productividad y co-piloto técnico</strong> que exige alto criterio ético y validación constante.
-                </p>
-
-                <!-- 3 Pillars of AI Competence -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Pillar 1 -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-2">
-                        <div class="text-xs font-mono text-purple-400 uppercase"><i class="fa-solid fa-terminal mr-1.5"></i>Copiloto de Desarrollo</div>
-                        <h4 class="text-base font-bold text-white">Generación y Refactorización</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Formulación de instrucciones precisas (Prompt Engineering) para redactar código base, identificar vulnerabilidades de sintaxis y optimizar algoritmos.
-                        </p>
-                    </div>
-
-                    <!-- Pillar 2 -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-2">
-                        <div class="text-xs font-mono text-sky-400 uppercase"><i class="fa-solid fa-book-open-reader mr-1.5"></i>Tutor de Posgrado</div>
-                        <h4 class="text-base font-bold text-white">Aceleración de Aprendizaje</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Explicación adaptativa de conceptos teóricos complejos de maestría, síntesis rápida de literatura científica y consulta técnica interactiva.
-                        </p>
-                    </div>
-
-                    <!-- Pillar 3 -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-2">
-                        <div class="text-xs font-mono text-amber-400 uppercase"><i class="fa-solid fa-scale-balanced mr-1.5"></i>Uso Ético y Verificación</div>
-                        <h4 class="text-base font-bold text-white">Criterio Antialucinación</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Evaluación crítica de los outputs generados por la IA para evitar sesgos, proteger datos confidenciales y garantizar la autoría académica.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. BENEFICIOS Y ÁREAS DE MEJORA -->
-        <section id="beneficios" class="scroll-mt-20">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 text-lg">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Beneficios, Retos y Mejora Continua</h2>
-                    <p class="text-xs text-slate-400 font-mono">Evaluación Estratégica del Perfil TIC</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Column 1: Beneficios y Fortalezas -->
-                <div class="glass-panel p-6 rounded-xl border border-emerald-500/20 space-y-4">
-                    <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-check"></i> Beneficios Consolidados
-                    </h3>
-
-                    <div class="space-y-3">
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Eficiencia Operativa e Innovación:</strong>
-                            Capacidad para resolver problemas mediante código y automatizar tareas repetitivas.
-                        </div>
-
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Fundamento Técnico Científico:</strong>
-                            Respaldo metodológico gracias a la Maestría en TIC de la UAGro.
-                        </div>
-
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Adopción Ágil de IA:</strong>
-                            Integración natural de Inteligencia Artificial para acelerar ciclos de trabajo e investigación.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 2: Retos y Áreas de Mejora -->
-                <div class="glass-panel p-6 rounded-xl border border-amber-500/20 space-y-4">
-                    <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Retos & Áreas de Mejora
-                    </h3>
-
-                    <div class="space-y-3">
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Obsolescencia Tecnológica Acelerada:</strong>
-                            El ritmo de cambio exige priorizar principios duraderos sobre sintaxis efímeras.
-                        </div>
-
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Profundización en Arquitectura Cloud & Seguridad:</strong>
-                            Seguir fortaleciendo conocimientos en nube e infraestructura distribuida.
-                        </div>
-
-                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300">
-                            <strong class="text-white block mb-0.5">Uso Ético y Privacidad de Datos:</strong>
-                            Garantizar la protección de la información sensible ante el avance de modelos automatizados.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10. CONCLUSIÓN -->
-        <section id="conclusion" class="scroll-mt-20">
-            <div class="glass-panel p-8 rounded-2xl border border-brand-500/30 text-center space-y-6">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-500/20 text-brand-400 text-xl">
-                    <i class="fa-solid fa-flag-checkered"></i>
-                </div>
-
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    Conclusión Estratégica
-                </h2>
-
-                <p class="text-sm sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                    Las competencias en el uso de las TIC no se reducen al manejo aislado de programas informáticos. En mi perfil como <span class="text-brand-400 font-semibold">Ingeniero en Sistemas Computacionales</span> y <span class="text-sky-400 font-semibold">estudiante de Maestría en la UAGro</span>, representan la articulación crítica entre la base técnica, la investigación rigurosa y el criterio ético para transformar necesidades del entorno laboral y personal en soluciones tecnológicas sostenibles.
-                </p>
-
-                <div class="inline-block px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-400">
-                    Tecnología + Criterio Analítico + Formación Posgrado = Solución de Impacto
-                </div>
-            </div>
-        </section>
-
-        <!-- 11. FUENTES DE REFERENCIA ACADÉMICA -->
-        <section id="fuentes" class="scroll-mt-20 pb-16">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 text-lg">
-                    <i class="fa-solid fa-book-bookmark"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Fuentes de Referencia Académica</h2>
-                    <p class="text-xs text-slate-400 font-mono">Fundamentación de la Investigación</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Source 1 -->
-                <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                    <div class="flex items-center justify-between text-xs font-mono text-brand-400">
-                        <span>Unión Europea</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </div>
-                    <h4 class="text-sm font-bold text-white">DigComp 2.2: El Marco de Competencia Digital</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Vuorikari, R., et al. (2022). <em>DigComp 2.2: The Digital Competence Framework for Citizens</em>. Joint Research Centre, European Commission.
-                    </p>
-                </div>
-
-                <!-- Source 2 -->
-                <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                    <div class="flex items-center justify-between text-xs font-mono text-sky-400">
-                        <span>UNESCO</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </div>
-                    <h4 class="text-sm font-bold text-white">Marco de Competencias TIC</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        UNESCO (2018/2021). <em>UNESCO ICT Competency Framework</em>. Organización de las Naciones Unidas para la Educación.
-                    </p>
-                </div>
-
-                <!-- Source 3 -->
-                <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-3">
-                    <div class="flex items-center justify-between text-xs font-mono text-emerald-400">
-                        <span>UAGro</span>
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h4 class="text-sm font-bold text-white">Plan de Estudios de Posgrado</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Universidad Autónoma de Guerrero (UAGro). Programa y líneas de investigación en Tecnologías de la Información y Comunicación.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FULLSCREEN PRESENTATION MODE MODAL -->
-    <div id="presentationModal" class="fixed inset-0 z-50 bg-slate-950 text-white hidden flex flex-col justify-between p-6 sm:p-12">
-        <!-- Top Presentation Bar -->
-        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-            <div class="flex items-center gap-3">
-                <span class="w-3 h-3 rounded-full bg-brand-500 animate-pulse"></span>
-                <span class="font-mono text-xs uppercase tracking-widest text-slate-400">Modo Exposición Oral • Diapositiva <span id="slideNum" class="text-brand-400 font-bold">1</span> / 10</span>
-            </div>
-            <button onclick="stopPresentation()" class="text-slate-400 hover:text-white bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg text-xs font-mono transition-colors">
-                <i class="fa-solid fa-xmark mr-1.5"></i> Salir
-            </button>
+    <!-- 3. ¿Qué son las competencias TIC? (Marco Teórico) -->
+    <section id="concepto" class="section">
+        <div class="section-header">
+            <h2>02. Marco Teórico: Competencias Digitales</h2>
+            <p>Fundamentación conceptual sobre el saber, saber hacer y saber ser en el ámbito tecnológico.</p>
         </div>
 
-        <!-- Slide Canvas Area -->
-        <div class="flex-1 my-6 flex items-center justify-center">
-            <div id="slideContent" class="w-full max-w-4xl glass-panel p-8 sm:p-12 rounded-2xl border border-slate-800 shadow-2xl space-y-6">
-                <!-- Slide content dynamically loaded via JS -->
+        <div class="comparison-grid">
+            <div class="comp-card left">
+                <h3><i class="fa-solid fa-wrench"></i> Uso Instrumental de Herramienta</h3>
+                <ul class="comp-list">
+                    <li>Conocimiento procedimental y operativo básico.</li>
+                    <li>Ejemplo: Saber la sintaxis de un lenguaje (Python) o ejecutar comandos de bases de datos.</li>
+                    <li>Saber presionar los botones adecuados o utilizar un software específico sin contexto analítico.</li>
+                    <li>Enfoque operativo de ejecución simple.</li>
+                </ul>
+            </div>
+            <div class="comp-card right">
+                <h3><i class="fa-solid fa-brain"></i> Competencia Digital Integral</h3>
+                <ul class="comp-list">
+                    <li>Capacidad abstracta de resolución de problemas reales.</li>
+                    <li>Ejemplo: Identificar un cuello de botella, diseñar la arquitectura de software e integrar bases de datos con automatización.</li>
+                    <li>Criterio para seleccionar, evaluar y descartar tecnologías según necesidades del entorno.</li>
+                    <li>Enfoque estratégico, crítico y ético.</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Bottom Controls Bar -->
-        <div class="flex items-center justify-between border-t border-slate-800 pt-4">
-            <button onclick="prevSlide()" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
-                <i class="fa-solid fa-chevron-left"></i> Anterior
-            </button>
-
-            <div class="flex gap-1.5" id="slideDots">
-                <!-- Dots generated via JS -->
+        <div class="triad-grid">
+            <div class="triad-box">
+                <h4>SABER</h4>
+                <p><strong>Conocimiento:</strong> Comprensión teórica y técnica de la infraestructura, algoritmos, inteligencia artificial y protocolos.</p>
             </div>
-
-            <button onclick="nextSlide()" class="bg-brand-600 hover:bg-brand-500 text-slate-900 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
-                Siguiente <i class="fa-solid fa-chevron-right"></i>
-            </button>
+            <div class="triad-box">
+                <h4>SABER HACER</h4>
+                <p><strong>Habilidad:</strong> Destreza práctica para programar, diseñar arquitecturas, configurar entornos y automatizar flujos.</p>
+            </div>
+            <div class="triad-box">
+                <h4>SABER SER / ESTAR</h4>
+                <p><strong>Actitud & Ética:</strong> Responsabilidad en la seguridad de la información, ética en IA, protección de datos y actualización continua.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Client-Side JavaScript Logic -->
+    <!-- Secuencia de Relación / Cadena de Valor -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Relación Sistémica de Aplicación</h2>
+            <p>La integración transversal de las TIC desde las competencias individuales hasta el impacto real.</p>
+        </div>
+        <div class="chain-container">
+            <div class="chain-step">
+                <div class="step-num">PASO 01</div>
+                <h4>Mis Competencias</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Programación, BD, IA, Automatización</p>
+            </div>
+            <div class="chain-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="chain-step">
+                <div class="step-num">PASO 02</div>
+                <h4>Formación Profesional</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Investigación, Maestría UAGro, Proyectos</p>
+            </div>
+            <div class="chain-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="chain-step">
+                <div class="step-num">PASO 03</div>
+                <h4>Contexto Laboral</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Sistemas, Eficiencia, Solución de Problemas</p>
+            </div>
+            <div class="chain-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="chain-step">
+                <div class="step-num">PASO 04</div>
+                <h4>Contexto Personal</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Organización, Aprendizaje Autónomo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Mis Competencias TIC -->
+    <section id="competencias" class="section">
+        <div class="section-header">
+            <h2>03. Desglose de Competencias TIC</h2>
+            <p>Habilidades específicas desarrolladas dentro del perfil de Ingeniería en Sistemas.</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-code"></i>
+                    <h4>Programación y Software</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Desarrollo de lógica, algoritmos, aplicaciones y código estructurado para soluciones informáticas.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-database"></i>
+                    <h4>Gestión de Bases de Datos</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Diseño, estructuración, almacenamiento y consulta eficiente de datos institucionales o de proyectos.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-robot"></i>
+                    <h4>Inteligencia Artificial</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Uso de herramientas de IA generativa y modelos de lenguaje para optimización, análisis y asistencia en código.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h4>Automatización de Procesos</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Creación de flujos de trabajo eficientes para reducir tareas repetitivas y mejorar tiempos de respuesta.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h4>Gestión de Información</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Búsqueda, filtrado, evaluación crítica y sistematización de repositorios académicos e información digital.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h4>Aprendizaje Digital Autónomo</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Capacidad de autoformación mediante documentación técnica, plataformas de posgrado y recursos en línea.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h4>Resolución de Problemas</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Diagnóstico de fallas informáticas, optimización de sistemas y diseño de soluciones técnicas adaptadas.</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Uso Ético y Seguro</h4>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-secondary);">Protección de datos personales, cumplimiento de normas de ciberseguridad y manejo ético de fuentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5, 6, 7. Aplicación en Contextos (Formación, Laboral, Personal) -->
+    <section id="aplicacion" class="section">
+        <div class="section-header">
+            <h2>04. Aplicación Práctica en Mi Contexto</h2>
+            <p>Cómo se traducen las competencias informáticas en valor dentro de mis tres pilares fundamentales.</p>
+        </div>
+
+        <div class="context-tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'formacion')"><i class="fa-solid fa-book"></i> Formación Profesional</button>
+            <button class="tab-btn" onclick="openTab(event, 'laboral')"><i class="fa-solid fa-briefcase"></i> Contexto Laboral</button>
+            <button class="tab-btn" onclick="openTab(event, 'personal')"><i class="fa-solid fa-user"></i> Contexto Personal</button>
+        </div>
+
+        <!-- Formación -->
+        <div id="formacion" class="tab-content active">
+            <h3 style="margin-bottom: 1rem; color: var(--accent-blue);"><i class="fa-solid fa-graduation-cap"></i> TIC en la Formación de Maestría (UAGro)</h3>
+            <ul class="comp-list">
+                <li><strong>Investigación Académica Eficiente:</strong> Utilización de repositorios digitales especializados, bases de datos científicas y gestores bibliográficos para fundamentar trabajos de posgrado.</li>
+                <li><strong>Desarrollo de Proyectos de Posgrado:</strong> Implementación de arquitecturas de software, prototipos de sistemas e informes integrales mediante plataformas colaborativas.</li>
+                <li><strong>Actualización Tecnológica Continua:</strong> Consulta constante de documentación técnica oficial, artículos científicos de vanguardia y frameworks de desarrollo.</li>
+                <li><strong>Asistencia Científica con IA:</strong> Empleo de inteligencia artificial para síntesis de literatura, revisión de lógica algorítmica y optimización de flujos de trabajo académico.</li>
+            </ul>
+        </div>
+
+        <!-- Laboral -->
+        <div id="laboral" class="tab-content">
+            <h3 style="margin-bottom: 1rem; color: var(--accent-emerald);"><i class="fa-solid fa-building"></i> Aplicación en el Ámbito Laboral</h3>
+            <ul class="comp-list">
+                <li><strong>Desarrollo y Optimización de Sistemas:</strong> Diseño de código, programación de componentes y despliegue de aplicaciones acordes a requerimientos del entorno.</li>
+                <li><strong>Automatización de Tareas Repetitivas:</strong> Creación de scripts y procesos automatizados para la optimización del tiempo y reducción de errores operativos.</li>
+                <li><strong>Gestión y Estructuración de Bases de Datos:</strong> Mantenimiento de la integridad, seguridad y disponibilidad de los datos organizacionales.</li>
+                <li><strong>Solución Sistémica de Problemas:</strong> Aplicación del pensamiento computacional para diagnosticar fallas en infraestructura o software y proponer soluciones escalables.</li>
+            </ul>
+        </div>
+
+        <!-- Personal -->
+        <div id="personal" class="tab-content">
+            <h3 style="margin-bottom: 1rem; color: var(--accent-purple);"><i class="fa-solid fa-house-laptop"></i> Aplicación en el Ámbito Personal</h3>
+            <ul class="comp-list">
+                <li><strong>Autoaprendizaje y Capacitación:</strong> Acceso autónomo a plataformas de cursos en línea, videotutoriales avanzados y comunidades de código abierto.</li>
+                <li><strong>Organización y Productividad:</strong> Gestión del tiempo y de proyectos personales utilizando suites en la nube, calendarios digitalizados y gestores de tareas.</li>
+                <li><strong>Comunicación Efectiva:</strong> Uso de canales digitales modernos para mantener contacto académico, profesional y colaboración en comunidades de desarrollo.</li>
+                <li><strong>Uso Responsable y Ciberseguridad:</strong> Implementación de buenas prácticas de autenticación, privacidad de información personal y análisis crítico de contenidos en red.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 8. Inteligencia Artificial -->
+    <section id="ia" class="section ai-section">
+        <div class="section-header">
+            <h2>05. Inteligencia Artificial como Competencia Digital</h2>
+            <p>La IA no sustituye el criterio técnico del Ingeniero; potencia la productividad y el análisis profundo.</p>
+        </div>
+        <div class="profile-grid">
+            <div class="card ai-card">
+                <div class="card-icon" style="color: var(--accent-purple); background: rgba(192, 132, 252, 0.1);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Copiloto en Desarrollo de Software</h3>
+                <p>Uso de IA generativa para la refactorización de código, detección de vulnerabilidades, generación de pruebas unitarias y aceleración del ciclo de programación.</p>
+            </div>
+            <div class="card ai-card">
+                <div class="card-icon" style="color: var(--accent-purple); background: rgba(192, 132, 252, 0.1);"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>Sintesis e Investigación</h3>
+                <p>Procesamiento eficiente de grandes volúmenes de documentos teóricos, extracción de hallazgos clave y estructuración de borradores para investigación de posgrado.</p>
+            </div>
+            <div class="card ai-card">
+                <div class="card-icon" style="color: var(--accent-purple); background: rgba(192, 132, 252, 0.1);"><i class="fa-solid fa-user-shield"></i></div>
+                <h3>Criterio Ético y Validación</h3>
+                <p>Verificación técnica constante contra 'alucinaciones', preservación de la confidencialidad de datos y uso transparente con integridad académica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Beneficios, Retos y Áreas de Mejora -->
+    <section id="balance" class="section">
+        <div class="section-header">
+            <h2>06. Beneficios, Retos y Áreas de Mejora</h2>
+            <p>Evaluación objetiva del impacto de las TIC y metas para el desarrollo continuo.</p>
+        </div>
+        <div class="profile-grid">
+            <div class="card">
+                <h3 style="color: var(--accent-emerald);"><i class="fa-solid fa-circle-check"></i> Beneficios Clave</h3>
+                <ul class="comp-list" style="margin-top: 1rem;">
+                    <li>Eficiencia y rapidez en la ejecución de tareas complejas.</li>
+                    <li>Acceso ilimitado a información académica actualizada.</li>
+                    <li>Capacidad para resolver problemas mediante la tecnología.</li>
+                    <li>Automatización que libera tiempo para el pensamiento estratégico.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent-amber);"><i class="fa-solid fa-triangle-exclamation"></i> Retos Enfrontados</h3>
+                <ul class="comp-list" style="margin-top: 1rem;">
+                    <li>Velocidad acelerada de obsolescencia tecnológica.</li>
+                    <li>Riesgos constantes en materia de ciberseguridad y privacidad.</li>
+                    <li>Sobrecarga de información (infoxicación).</li>
+                    <li>Necesidad de validación rigurosa al usar herramientas de IA.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent-blue);"><i class="fa-solid fa-bullseye"></i> Áreas de Mejora</h3>
+                <ul class="comp-list" style="margin-top: 1rem;">
+                    <li>Profundización en arquitecturas avanzadas de inteligencia artificial.</li>
+                    <li>Fortalecimiento de la seguridad informática ofensiva/defensiva.</li>
+                    <li>Mejora en la gobernanza y gestión estratégica de proyectos TIC.</li>
+                    <li>Actualización permanente en frameworks emergentes.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Conclusión -->
+    <section class="section" style="text-align: center;">
+        <div class="section-header">
+            <h2>07. Conclusión</h2>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 3rem; border-radius: 0.75rem; border: 1px solid var(--border-color); max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 1.5rem;">
+                "Las competencias TIC en un <strong>Ingeniero en Sistemas Computacionales</strong> y estudiante de maestría no se reducen a dominar software o lenguajes de programación particulares; constituyen un marco integral de <strong>pensamiento analítico, resolución de problemas y adopción ética de la tecnología</strong>."
+            </p>
+            <p style="color: var(--text-secondary); font-size: 1rem;">
+                La articulación transversal entre la formación profesional en la UAGro, la aplicación en el entorno laboral y la organización personal permite transformar las herramientas digitales en motores reales de innovación, productividad y desarrollo profesional continuo.
+            </p>
+        </div>
+    </section>
+
+    <!-- 11. Fuentes -->
+    <section id="fuentes" class="section">
+        <div class="section-header">
+            <h2>08. Referencias Académicas e Institucionales</h2>
+            <p>Fundamentación teórica e investigación bibliográfica realizada.</p>
+        </div>
+        <ul class="reference-list">
+            <li class="reference-item">
+                <strong>Comisión Europea. (2022).</strong> <em>DigComp 2.2: The Digital Competence Framework for Citizens - With new examples of knowledge, skills and attitudes.</em> Publications Office of the European Union. 
+                <br><a href="https://joint-research-centre.ec.europa.eu/digcomp/digcomp-framework_en" target="_blank">https://joint-research-centre.ec.europa.eu/digcomp/digcomp-framework_en</a>
+            </li>
+            <li class="reference-item">
+                <strong>UNESCO. (2019).</strong> <em>Marco de competencias de los docentes en materia de TIC de la UNESCO.</em> Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura.
+                <br><a href="https://unesdoc.unesco.org/ark:/48223/pf0000371024" target="_blank">https://unesdoc.unesco.org/ark:/48223/pf0000371024</a>
+            </li>
+            <li class="reference-item">
+                <strong>UAGro. (2023).</strong> <em>Plan de Estudios de Posgrado y Modelo Educativo de la Universidad Autónoma de Guerrero.</em> Universidad Autónoma de Guerrero.
+                <br><a href="https://www.uagro.mx" target="_blank">https://www.uagro.mx</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Actividad Académica:</strong> Describiendo las competencias en el uso de las TIC</p>
+        <p>Universidad Autónoma de Guerrero | Maestría relacionada con TIC</p>
+        <p style="font-size: 0.8rem; margin-top: 1rem;">© 2026 - Perfil de Ingeniería en Sistemas Computacionales</p>
+    </footer>
+
+    <!-- Script for Tab Switcher -->
     <script>
-        // 1. Skill Filters Logic
-        function filterSkills(category) {
-            const cards = document.querySelectorAll('.skill-card');
-            const buttons = document.querySelectorAll('.skill-filter-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-600', 'text-slate-900');
-                btn.classList.add('hover:bg-slate-800', 'text-slate-300');
-            });
-            event.target.classList.add('bg-brand-600', 'text-slate-900');
-            event.target.classList.remove('hover:bg-slate-800', 'text-slate-300');
-
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.cat === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // 2. Context Tabs Switcher
-        function switchContext(ctx) {
-            document.querySelectorAll('.context-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.context-tab').forEach(btn => {
-                btn.classList.remove('border-brand-500', 'text-brand-400');
-                btn.classList.add('border-transparent', 'text-slate-400');
-            });
-
-            document.getElementById(`content-${ctx}`).classList.remove('hidden');
-            const activeTab = document.getElementById(`tab-${ctx}`);
-            activeTab.classList.add('border-brand-500', 'text-brand-400');
-            activeTab.classList.remove('border-transparent', 'text-slate-400');
-        }
-
-        // 3. Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        // 4. Oral Presentation Slides Deck Data
-        const slidesData = [
-            {
-                title: "Describiendo las Competencias en el Uso de las TIC",
-                subtitle: "Tema: El uso de las TIC para mi formación profesional aplicada en mi contexto laboral y personal",
-                tag: "Portada",
-                body: `<div class="space-y-4">
-                    <p class="text-sm text-slate-300 leading-relaxed">Presentador: <strong>Ingeniero en Sistemas Computacionales</strong></p>
-                    <p class="text-sm text-slate-300 leading-relaxed">Programa: <strong>Estudiante de Maestría en TIC — UAGro</strong></p>
-                    <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs text-brand-300">
-                        Relación integradora: MIS COMPETENCIAS ➔ FORMACIÓN ➔ LABORAL/PERSONAL ➔ APLICACIÓN PRÁCTICA
-                    </div>
-                </div>`
-            },
-            {
-                title: "Mi Perfil Profesional",
-                subtitle: "Ingeniería en Sistemas Computacionales + Maestría en TIC (UAGro)",
-                tag: "Perfil",
-                body: `<div class="grid grid-cols-2 gap-4 text-xs">
-                    <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-                        <strong class="text-brand-400 block mb-2 font-mono">Ingeniería en Sistemas</strong>
-                        <p class="text-slate-400">Fundamentación en lógica, programación, arquitecturas y bases de datos.</p>
-                    </div>
-                    <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-                        <strong class="text-sky-400 block mb-2 font-mono">Maestría UAGro</strong>
-                        <p class="text-slate-400">Investigación aplicada, innovación, gestión tecnológica y adopción de IA.</p>
-                    </div>
-                </div>`
-            },
-            {
-                title: "¿Qué son las Competencias TIC?",
-                subtitle: "Saber, Saber Hacer y Saber Ser",
-                tag: "Concepto",
-                body: `<p class="text-sm text-slate-300 mb-4">Integración de conocimientos técnicos, habilidades prácticas y criterio ético para resolver problemas complejos.</p>
-                <div class="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300">
-                    <strong>Diferencia clave:</strong> Manejar una herramienta es operacional; una competencia implica capacidad crítica, abstracción y elección de la mejor solución.
-                </div>`
-            },
-            {
-                title: "Mis Competencias TIC Clave",
-                subtitle: "Matriz del Ingeniero en Sistemas",
-                tag: "Competencias",
-                body: `<ul class="grid grid-cols-2 gap-3 text-xs text-slate-300">
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Programación Estructurada y OO</li>
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Desarrollo de Software y Apps</li>
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Gestión y Modelado de BD</li>
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Inteligencia Artificial y Prompting</li>
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Automatización de Procesos</li>
-                    <li class="p-2.5 bg-slate-900 rounded border border-slate-800">• Aprendizaje Autónomo Digital</li>
-                </ul>`
-            },
-            {
-                title: "TIC en la Formación Profesional",
-                subtitle: "Investigación y Aprendizaje en la UAGro",
-                tag: "Formación",
-                body: `<div class="space-y-3 text-xs text-slate-300">
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Investigación Científica:</strong> Búsqueda en repositorios académicos y gestión bibliográfica.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Entornos LMS:</strong> Interacción y desarrollo de proyectos de posgrado.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Autoaprendizaje:</strong> Actualización mediante documentación oficial y repositorios.</div>
-                </div>`
-            },
-            {
-                title: "TIC en el Contexto Laboral",
-                subtitle: "Aplicaciones Prácticas y Solución de Problemas",
-                tag: "Laboral",
-                body: `<div class="space-y-3 text-xs text-slate-300">
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Solución de Fallas:</strong> Diagnóstico y mantenimiento correctivo de software.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Automatización:</strong> Scripts que reducen tiempos y eliminan errores repetitivos.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Seguridad de Datos:</strong> Mantenimiento e integridad de bases de datos.</div>
-                </div>`
-            },
-            {
-                title: "TIC en el Contexto Personal",
-                subtitle: "Organización, Seguridad y Proyectos",
-                tag: "Personal",
-                body: `<div class="space-y-3 text-xs text-slate-300">
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Productividad:</strong> Gestión del tiempo mediante herramientas sincronizadas en la nube.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Ciberseguridad:</strong> Uso de 2FA y hábitos seguros de navegación.</div>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800"><strong>Proyectos Personales:</strong> Exploración libre de nuevas tecnologías e IA.</div>
-                </div>`
-            },
-            {
-                title: "Inteligencia Artificial como Competencia Digital",
-                subtitle: "Acelerador Transversal de Productividad",
-                tag: "IA",
-                body: `<div class="space-y-3 text-xs text-slate-300">
-                    <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded"><strong>Prompt Engineering:</strong> Asistencia en generación y depuración de código.</div>
-                    <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded"><strong>Tutor de Investigación:</strong> Síntesis rápida de literatura científica.</div>
-                    <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded"><strong>Criterio Ético:</strong> Verificación estricta para evitar alucinaciones de datos.</div>
-                </div>`
-            },
-            {
-                title: "Beneficios, Retos y Áreas de Mejora",
-                subtitle: "Matriz Estratégica",
-                tag: "Evaluación",
-                body: `<div class="grid grid-cols-2 gap-3 text-xs">
-                    <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded">
-                        <strong class="text-emerald-400 block mb-1">Beneficios</strong>
-                        <p class="text-slate-300">Eficiencia en código, automatización y respaldo teórico UAGro.</p>
-                    </div>
-                    <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded">
-                        <strong class="text-amber-400 block mb-1">Retos / Mejora</strong>
-                        <p class="text-slate-300">Evitar la obsolescencia y profundizar en seguridad en la nube.</p>
-                    </div>
-                </div>`
-            },
-            {
-                title: "Conclusión y Fuentes de Referencia",
-                subtitle: "Cierre de la Exposición Oral",
-                tag: "Conclusión",
-                body: `<div class="space-y-4 text-xs text-slate-300">
-                    <p class="leading-relaxed">Las competencias TIC integran la formación técnica en Sistemas Computacionales y la Maestría de la UAGro para generar valor real en los contextos laboral y personal.</p>
-                    <div class="p-3 bg-slate-900 rounded border border-slate-800 text-[11px] font-mono">
-                        Fuentes principales: DigComp 2.2 (Comisión Europea) • UNESCO ICT Framework • UAGro
-                    </div>
-                </div>`
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
-        ];
-
-        let currentSlide = 0;
-
-        function startPresentation() {
-            document.getElementById('presentationModal').classList.remove('hidden');
-            currentSlide = 0;
-            renderSlide();
-        }
-
-        function stopPresentation() {
-            document.getElementById('presentationModal').classList.add('hidden');
-        }
-
-        function renderSlide() {
-            const slide = slidesData[currentSlide];
-            document.getElementById('slideNum').innerText = currentSlide + 1;
-            
-            const container = document.getElementById('slideContent');
-            container.innerHTML = `
-                <div class="space-y-3">
-                    <span class="px-2.5 py-1 rounded bg-brand-500/20 text-brand-400 font-mono text-xs uppercase tracking-widest inline-block border border-brand-500/30">${slide.tag}</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">${slide.title}</h2>
-                    <p class="text-xs sm:text-sm text-slate-400 font-mono">${slide.subtitle}</p>
-                </div>
-                <div class="pt-4 border-t border-slate-800">
-                    ${slide.body}
-                </div>
-            `;
-
-            // Render Dots
-            const dotsContainer = document.getElementById('slideDots');
-            dotsContainer.innerHTML = slidesData.map((_, idx) => `
-                <span class="w-2 h-2 rounded-full ${idx === currentSlide ? 'bg-brand-500' : 'bg-slate-800'} transition-all"></span>
-            `).join('');
-        }
-
-        function nextSlide() {
-            if (currentSlide < slidesData.length - 1) {
-                currentSlide++;
-                renderSlide();
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
             }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                renderSlide();
-            }
-        }
-
-        // Keyboard Controls for Presentation
-        document.addEventListener('keydown', function(e) {
-            const modal = document.getElementById('presentationModal');
-            if (!modal.classList.contains('hidden')) {
-                if (e.key === 'ArrowRight' || e.key === 'Space') {
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                } else if (e.key === 'Escape') {
-                    stopPresentation();
-                }
-            }
-        });
     </script>
 </body>
 </html>
